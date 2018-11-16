@@ -8,7 +8,7 @@ namespace L7.Persistance
     {
         public void Configure(EntityTypeBuilder<ShoppingCartProductPrice> builder)
         {
-            builder.HasKey(x => new {x.ShoppingCartId, x.Price});
+            builder.HasKey(x => x.Id);
             builder.HasOne<ShoppingCart>().WithMany(x => x.ProductPrices).HasForeignKey(x => x.ShoppingCartId);
         }
     }

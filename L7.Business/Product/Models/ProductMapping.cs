@@ -6,7 +6,7 @@ namespace L7.Business
     public class ProductMapping : Profile
     {
         public ProductMapping(){
-            CreateMap<Product, ProductModel>();
+            CreateMap<Domain.Product, ProductModel>();
         }
     } 
 }

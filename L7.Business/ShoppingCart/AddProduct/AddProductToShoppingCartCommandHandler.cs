@@ -32,7 +32,7 @@ namespace L7.Business
         {
             var productOrNothing = productRepository.GetById(productId);
 
-            return productOrNothing.ToResult(ErrorMessages.ProdcutNotFound)
+            return productOrNothing.ToResult(ErrorMessages.ProductNotFound)
                 .OnSuccess(p =>
                 {
                     shoppingCart.AddProductPrice(p);

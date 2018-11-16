@@ -23,5 +23,12 @@
                 Pieces = pieces
             };
         }
+
+        public void Update(string name, decimal price, int pieces)
+        {
+            Name = name;
+            Price = Price.Create(price);
+            Pieces = pieces;
+        }
     }
 }

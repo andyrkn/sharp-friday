@@ -2,7 +2,7 @@
 
 namespace L7.Domain
 {
-    public class ShoppingCartProductPrice
+    public class ShoppingCartProductPrice : Entity
     {
         private ShoppingCartProductPrice()
         {

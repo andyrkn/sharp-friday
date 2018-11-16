@@ -63,9 +63,9 @@ namespace L7.Business {
         /// <summary>
         ///   Looks up a localized string similar to Product not found!.
         /// </summary>
-        internal static string ProdcutNotFound {
+        internal static string ProductNotFound {
             get {
-                return ResourceManager.GetString("ProdcutNotFound", resourceCulture);
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
             }
         }
         
