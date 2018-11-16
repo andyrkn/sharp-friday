@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using AutoMapper;
+using L7.Business;
+using L7.Persistance;
+using L7.Persistance.Repositories;
+using L7.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace L7
 {
@@ -22,13 +24,18 @@ namespace L7
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var assemblies = new List<Assembly> { typeof(BusinessLayer).Assembly };
+
+            services.AddDbContext<ShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Shop")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAutoMapper(assemblies)
+                .AddMediatR(assemblies);
+            services.AddScoped<IShopingCartRepository, ShoppingCartRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
